@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Genre {
+public class Cast {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +17,7 @@ public class Genre {
 
     private String name;
 
+    private String surname;
+
     private Long movieId;
-
-    public Genre() { }
-
-    public Genre(String name, Long movieId) {
-        this.name = name;
-        this.movieId = movieId;
-    }
 }
