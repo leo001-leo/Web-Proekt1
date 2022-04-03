@@ -5,6 +5,7 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.enumerations.ShoppingCartStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,7 +21,8 @@ public class ShoppingCart {
     @Enumerated(EnumType.STRING)
     private ShoppingCartStatus status;
 
-    private Long userId;
+    @ManyToOne
+    private User user;
 
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Movie> movies;
@@ -28,10 +30,10 @@ public class ShoppingCart {
     public ShoppingCart() {
     }
 
-    public ShoppingCart(LocalDateTime dateCreated, ShoppingCartStatus status, Long userId, List<Movie> movies) {
-        this.dateCreated = dateCreated;
-        this.status = status;
-        this.userId = userId;
-        this.movies = movies;
+    public ShoppingCart(User user) {
+        this.dateCreated = LocalDateTime.now();
+        this.status = ShoppingCartStatus.CREATED;
+        this.user = user;
+        this.movies = new ArrayList<>();
     }
 }
