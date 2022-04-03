@@ -2,13 +2,11 @@ package mk.ukim.finki.vp.proekt.vpproekt.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
+@Table(name = "Movie_cast")
 public class Cast {
 
     @Id
@@ -20,4 +18,13 @@ public class Cast {
     private String surname;
 
     private Long movieId;
+
+    public Cast() {
+    }
+
+    public Cast(String name, String surname, Long movieId) {
+        this.name = name;
+        this.surname = surname;
+        this.movieId = movieId;
+    }
 }

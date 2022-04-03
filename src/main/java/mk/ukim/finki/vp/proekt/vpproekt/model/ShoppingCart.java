@@ -25,4 +25,13 @@ public class ShoppingCart {
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Movie> movies;
 
+    public ShoppingCart() {
+    }
+
+    public ShoppingCart(LocalDateTime dateCreated, ShoppingCartStatus status, Long userId, List<Movie> movies) {
+        this.dateCreated = dateCreated;
+        this.status = status;
+        this.userId = userId;
+        this.movies = movies;
+    }
 }
