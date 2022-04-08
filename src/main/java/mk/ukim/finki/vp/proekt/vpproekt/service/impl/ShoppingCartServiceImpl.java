@@ -12,10 +12,12 @@ import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.ShoppingCartRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.UserRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.service.MovieService;
 import mk.ukim.finki.vp.proekt.vpproekt.service.ShoppingCartService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     private final ShoppingCartRepository shoppingCartRepository;

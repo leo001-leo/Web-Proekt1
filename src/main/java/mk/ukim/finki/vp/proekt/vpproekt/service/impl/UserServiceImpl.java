@@ -8,7 +8,9 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.UsernameAlreadyExistsEx
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.UserRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;

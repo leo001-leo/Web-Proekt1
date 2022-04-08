@@ -4,7 +4,9 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.User;
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.InvalidUserCredentialsException;
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.UserRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.service.AuthService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
 
