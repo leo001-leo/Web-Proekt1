@@ -1,4 +1,4 @@
-package mk.ukim.finki.vp.proekt.vpproekt.model;
+package mk.ukim.finki.vp.proekt.vpproekt.model.enumerations;
 
 import org.springframework.security.core.GrantedAuthority;
 

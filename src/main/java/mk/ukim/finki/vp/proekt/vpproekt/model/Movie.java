@@ -2,11 +2,11 @@ package mk.ukim.finki.vp.proekt.vpproekt.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,29 +22,32 @@ public class Movie {
 
     private String description;
 
-    private Long genreId;
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
     private String price;
 
     private String quantity;
 
-    private String duration;
+    private Duration duration;
 
     private String ratingImdb;
 
-    private Long castId;
+    @OneToMany
+    private List<Cast> cast;
 
     public Movie() { }
 
-    public Movie(String name, LocalDateTime date, String description, Long genreId, String price, String quantity, String duration, String ratingImdb, Long castId) {
+    public Movie(String name, LocalDateTime date, String description, Genre genre, String price, String quantity, Duration duration, String ratingImdb) {
         this.name = name;
         this.date = date;
         this.description = description;
-        this.genreId = genreId;
+        this.genre = genre;
         this.price = price;
         this.quantity = quantity;
         this.duration = duration;
         this.ratingImdb = ratingImdb;
-        this.castId = castId;
+        this.cast = new ArrayList<>();
     }
 }

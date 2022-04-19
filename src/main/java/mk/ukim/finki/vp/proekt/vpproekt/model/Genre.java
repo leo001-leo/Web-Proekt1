@@ -17,12 +17,11 @@ public class Genre {
 
     private String name;
 
-    private Long movieId;
+    private String description;
 
     public Genre() { }
 
-    public Genre(String name, Long movieId) {
+    public Genre(String name, String description) {
         this.name = name;
-        this.movieId = movieId;
     }
 }

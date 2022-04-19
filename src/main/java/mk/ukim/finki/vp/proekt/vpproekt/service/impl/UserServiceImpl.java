@@ -1,17 +1,19 @@
 package mk.ukim.finki.vp.proekt.vpproekt.service.impl;
 
-import mk.ukim.finki.vp.proekt.vpproekt.model.Role;
+import mk.ukim.finki.vp.proekt.vpproekt.model.enumerations.Role;
 import mk.ukim.finki.vp.proekt.vpproekt.model.User;
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.InvalidUsernameOrPasswordException;
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.PasswordsDoNotMatchException;
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.UsernameAlreadyExistsException;
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.UserRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -36,5 +38,10 @@ public class UserServiceImpl implements UserService {
         }
         User user=new User(name,surname,username,passwordEncoder.encode(password),email,role);
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return (UserDetails) userRepository.findByUsername(s).orElseThrow(()->new UsernameNotFoundException(s));
     }
 }

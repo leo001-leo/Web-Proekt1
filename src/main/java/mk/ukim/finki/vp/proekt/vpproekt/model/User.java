@@ -1,6 +1,7 @@
 package mk.ukim.finki.vp.proekt.vpproekt.model;
 
 import lombok.Data;
+import mk.ukim.finki.vp.proekt.vpproekt.model.enumerations.Role;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,14 +12,11 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String username;
 
     private String name;
 
     private String surname;
-
-    private String username;
 
     private String password;
 
@@ -32,7 +30,7 @@ public class User {
 
     public User() { }
 
-    public User(String name, String surname, String username, String password, String email,Role role) {
+    public User(String name, String surname, String username, String password, String email, Role role) {
         this.name = name;
         this.surname = surname;
         this.username = username;
