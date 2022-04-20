@@ -1,4 +1,4 @@
-package mk.ukim.finki.vp.proekt.vpproekt.web.controller;
+package mk.ukim.finki.vp.proekt.vpproekt.web.controller.rest;
 
 import mk.ukim.finki.vp.proekt.vpproekt.model.Genre;
 import mk.ukim.finki.vp.proekt.vpproekt.service.GenreService;
