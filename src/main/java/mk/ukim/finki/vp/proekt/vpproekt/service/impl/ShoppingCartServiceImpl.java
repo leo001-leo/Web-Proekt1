@@ -52,8 +52,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCart addProductToShoppingCart(String username, Long movieId) {
         ShoppingCart shoppingCart=this.getActiveShoppingCart(username);
-        Movie movie=this.movieService.findById(movieId).orElseThrow(()->new MovieNotFoundException(movieId));
-        if(shoppingCart.getMovies().stream().filter(i->i.getId().equals(movieId))
+        Movie movie = this.movieService.findById(movieId)
+                .orElseThrow(()->new MovieNotFoundException(movieId));
+        if(shoppingCart.getMovies()
+                .stream().filter(i->i.getId().equals(movieId))
                 .collect(Collectors.toList()).size() > 0)
             throw new MovieAlreadyInShoppingCartException(movieId,username);
         shoppingCart.getMovies().add(movie);
