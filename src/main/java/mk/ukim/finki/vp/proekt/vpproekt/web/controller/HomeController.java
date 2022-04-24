@@ -11,6 +11,6 @@ public class HomeController {
 
     @GetMapping
     public String getHomePage(Model model){
-        return "";
+        return "login";
     }
 }
