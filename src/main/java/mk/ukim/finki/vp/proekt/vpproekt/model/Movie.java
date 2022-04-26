@@ -26,20 +26,21 @@ public class Movie {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    private String price;
+    private Double price;
 
-    private String quantity;
+    private Double quantity;
 
     private Duration duration;
 
-    private String ratingImdb;
+    private Double ratingImdb;
 
     @OneToMany
     private List<Cast> cast;
 
     public Movie() { }
 
-    public Movie(String name, LocalDateTime date, String description, Genre genre, String price, String quantity, Duration duration, String ratingImdb) {
+
+    public Movie(String name, LocalDateTime date, String description, Genre genre, Double price, Double quantity, Duration duration, Double ratingImdb, List<Cast> cast) {
         this.name = name;
         this.date = date;
         this.description = description;
@@ -48,6 +49,6 @@ public class Movie {
         this.quantity = quantity;
         this.duration = duration;
         this.ratingImdb = ratingImdb;
-        this.cast = new ArrayList<>();
+        this.cast = cast;
     }
 }

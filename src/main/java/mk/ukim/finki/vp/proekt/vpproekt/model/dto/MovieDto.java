@@ -1,6 +1,12 @@
 package mk.ukim.finki.vp.proekt.vpproekt.model.dto;
 
 import lombok.Data;
+import mk.ukim.finki.vp.proekt.vpproekt.model.Cast;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class MovieDto {
@@ -9,17 +15,31 @@ public class MovieDto {
 
     private Double price;
 
-    private Integer quantity;
+    private String description;
 
-    private String duration;
+    private LocalDateTime date;
 
-    private String ratingImdb;
+    private Double quantity;
 
-    public MovieDto(String name, Double price, Integer quantity, String duration, String ratingImdb) {
-        this.name = name;
+    private Duration duration;
+
+    private Double ratingImdb;
+
+    private Long genre;
+
+    private List<Long> cast;
+
+    public MovieDto() {
+    }
+
+    public MovieDto(Double price, String description, LocalDateTime date, Double quantity, Duration duration, Double ratingImdb, Long genre, List<Long> cast) {
         this.price = price;
+        this.description = description;
+        this.date = date;
         this.quantity = quantity;
         this.duration = duration;
         this.ratingImdb = ratingImdb;
+        this.genre = genre;
+        this.cast = cast;
     }
 }

@@ -21,11 +21,11 @@ public interface MovieService {
                          LocalDateTime date,
                          String description,
                          Long genreId,
-                         String price,
-                         String quantity,
+                         Double price,
+                         Double quantity,
                          Duration duration,
-                         String ratingImdb,
-                         List<Cast> cast);
+                         Double ratingImdb,
+                         List<Long> castIds);
 
     Optional<Movie> save(MovieDto movieDto);
 
@@ -34,13 +34,13 @@ public interface MovieService {
                          LocalDateTime date,
                          String description,
                          Long genreId,
-                         String price,
-                         String quantity,
+                         Double price,
+                         Double quantity,
                          Duration duration,
-                         String ratingImdb,
-                         List<Cast> cast);
+                         Double ratingImdb,
+                         List<Long> castIds);
 
-    Optional<Movie> edit(MovieDto movieDto);
+    Optional<Movie> edit(Long id, MovieDto movieDto);
 
     void deleteById(Long id);
 
