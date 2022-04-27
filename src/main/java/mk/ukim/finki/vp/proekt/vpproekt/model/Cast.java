@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "cast_movie")
+@Table(name = "actors")
 public class Cast {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +16,11 @@ public class Cast {
 
     private String surname;
 
-    @ManyToOne
-    private Movie movieId;
-
     public Cast() {
     }
 
-    public Cast(String name, String surname, Movie movieId) {
+    public Cast(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        this.movieId = movieId;
     }
 }

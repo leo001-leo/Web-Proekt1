@@ -35,7 +35,7 @@ public class Movie {
 
     private Double ratingImdb;
 
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Cast> cast;
 
     public Movie() { }

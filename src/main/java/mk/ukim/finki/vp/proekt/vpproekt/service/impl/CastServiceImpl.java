@@ -45,7 +45,7 @@ public class CastServiceImpl implements CastService {
         Movie movie = this.movieRepository.findById(movieId)
                 .orElseThrow(() -> new MovieNotFoundException(movieId));
         this.castRepository.deleteByName(name);
-        Cast cast = new Cast(name, surname, movie);
+        Cast cast = new Cast(name, surname);
         this.castRepository.save(cast);
         return Optional.of(cast);
     }
@@ -55,7 +55,7 @@ public class CastServiceImpl implements CastService {
         Movie movie = this.movieRepository.findById(castDto.getMovie())
                 .orElseThrow(() -> new MovieNotFoundException(castDto.getMovie()));
         this.castRepository.deleteByName(castDto.getName());
-        Cast cast = new Cast(castDto.getName(), castDto.getSurname(), movie);
+        Cast cast = new Cast(castDto.getName(), castDto.getSurname());
         this.castRepository.save(cast);
         return Optional.of(cast);
     }
@@ -71,7 +71,6 @@ public class CastServiceImpl implements CastService {
 
         Movie movie = this.movieRepository.findById(movieId)
                 .orElseThrow(() -> new MovieNotFoundException(movieId));
-        cast.setMovieId(movie);
         this.castRepository.save(cast);
         return Optional.of(cast);
     }
@@ -86,7 +85,6 @@ public class CastServiceImpl implements CastService {
 
         Movie movie = this.movieRepository.findById(castDto.getMovie())
                 .orElseThrow(() -> new MovieNotFoundException(castDto.getMovie()));
-        cast.setMovieId(movie);
         this.castRepository.save(cast);
         return Optional.of(cast);
     }

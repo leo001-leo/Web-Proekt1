@@ -36,11 +36,11 @@
 
           <!--Movie description-->
           <div class="form-group">
-            <label for="desc">Description</label>
+            <label for="description">Description</label>
             <input type="text"
                    class="form-control"
-                   id="desc"
-                   name="desc"
+                   id="description"
+                   name="description"
                    th:value="(${movie} != null ? ${movie.getDescription} : '')"
                    placeholder="Description">
           </div>
@@ -99,11 +99,11 @@
 
           <!--Movie rating-->
           <div class="form-group">
-            <label for="rating">Rating from IMDB</label>
+            <label for="ratingImdb">Rating from IMDB</label>
             <input type="text"
                    class="form-control"
-                   id="rating"
-                   name="rating"
+                   id="ratingImdb"
+                   name="ratingImdb"
                    th:value="(${movie} != null ? ${movie.getRatingImdb()} : '')"
                    placeholder="Rating from IMDB">
           </div>
@@ -111,7 +111,7 @@
           <!--Movie cast - ne znam kako da se impleentira lista-->
           <div class="form-group">
             <label>Movie Cast</label>
-            <select id="cast" name="cast" multiple="multiple">
+            <select id="castIds" name="castIds" multiple="multiple">
               <option th:each="cas: ${cast}" th:value="${cas.getId()}" th:text="${cas.getName()}">[cas.name]</option>
             </select>
           </div>

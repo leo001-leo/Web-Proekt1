@@ -6,6 +6,7 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.Movie;
 import mk.ukim.finki.vp.proekt.vpproekt.service.CastService;
 import mk.ukim.finki.vp.proekt.vpproekt.service.GenreService;
 import mk.ukim.finki.vp.proekt.vpproekt.service.MovieService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +76,7 @@ public class MovieController {
     @PostMapping("/add")
     public String saveMovie( @RequestParam(required = false) Long id,
                              @RequestParam String name,
-                             @RequestParam LocalDateTime date,
+                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime date,
                              @RequestParam String description,
                              @RequestParam Long genre,
                              @RequestParam String price,
@@ -83,7 +84,6 @@ public class MovieController {
                              @RequestParam String duration,
                              @RequestParam Double ratingImdb,
                              @RequestParam List<Long> castIds) {
-
         if (id != null) {
             this.movieService.edit(id, name, date, description, genre, price, quantity, duration, ratingImdb, castIds);
         } else {
