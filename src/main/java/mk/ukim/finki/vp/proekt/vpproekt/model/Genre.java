@@ -2,10 +2,7 @@ package mk.ukim.finki.vp.proekt.vpproekt.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -17,6 +14,7 @@ public class Genre {
 
     private String name;
 
+    @Column(length = 4000)
     private String description;
 
     public Genre() { }

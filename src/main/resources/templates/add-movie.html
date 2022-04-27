@@ -1,0 +1,119 @@
+<div xmlns:th="http://www.thymeleaf.org">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">I LOVE MOVIES</h1>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <form action="/movies/add" method="POST">
+          <input id="id" type="hidden" name="id" th:value="(${movie} != null ? ${movie.getId()} : '')">
+
+          <!--Movie name-->
+          <div class="form-group">
+            <label for="name">Movie name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   name="name"
+                   th:value="(${movie} != null ? ${movie.getName()} : '')"
+                   required
+                   placeholder="Enter movie name">
+          </div>
+
+          <!--Movie date-->
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="datetime-local"
+                   class="form-control"
+                   id="date"
+                   name="date"
+                   th:value="(${movie} != null ? ${movie.getDate()} : '')"
+                   placeholder="Date">
+          </div>
+
+          <!--Movie description-->
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text"
+                   class="form-control"
+                   id="desc"
+                   name="desc"
+                   th:value="(${movie} != null ? ${movie.getDescription} : '')"
+                   placeholder="Description">
+          </div>
+
+          <!--Movie genre-->
+          <div class="form-group">
+            <label>Genre</label>
+            <select name="genre" class="form-control">
+              <option th:if="${movie} != null"
+                      th:selected="${movie.getGenre() != null &&
+                                product.getGenre().getId() == gen.getId()}"
+                      th:each="gen : ${genres}"
+                      th:value="${gen.getId()}"
+                      th:text="${gen.getName()}">
+              </option>
+              <option th:if="${movie} == null"
+                      th:each="gen : ${genres}"
+                      th:value="${gen.getId()}"
+                      th:text="${gen.getName()}">
+              </option>
+            </select>
+          </div>
+
+          <!--Movie price-->
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text"
+                   class="form-control"
+                   id="price"
+                   name="price"
+                   th:value="(${movie} != null ? ${movie.getPrice()} : '')"
+                   placeholder="Price">
+          </div>
+
+          <!--Movie quantity-->
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="text"
+                   class="form-control"
+                   id="quantity"
+                   name="quantity"
+                   th:value="(${movie} != null ? ${movie.getQuantity()} : '')"
+                   placeholder="Quantity">
+          </div>
+
+          <!--Movie duration-->
+          <div class="form-group">
+            <label for="duration">Movie Duration</label>
+            <input type="text"
+                   class="form-control"
+                   id="duration"
+                   name="duration"
+                   th:value="(${movie} != null ? ${movie.getDuration()} : '')"
+                   placeholder="Duration">
+          </div>
+
+          <!--Movie rating-->
+          <div class="form-group">
+            <label for="rating">Rating from IMDB</label>
+            <input type="text"
+                   class="form-control"
+                   id="rating"
+                   name="rating"
+                   th:value="(${movie} != null ? ${movie.getRatingImdb()} : '')"
+                   placeholder="Rating from IMDB">
+          </div>
+
+          <!--Movie cast - ne znam kako da se impleentira lista-->
+
+          <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+          <a type="button" class="btn btn-primary" href="/movies">Back</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

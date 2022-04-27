@@ -50,7 +50,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     @Transactional
-    public Optional<Movie> save(String name, LocalDateTime date, String description, Long genreId, Double price, Double quantity, Duration duration, Double ratingImdb, List<Long> castIds) {
+    public Optional<Movie> save(String name, LocalDateTime date, String description, Long genreId, String price, Double quantity, String duration, Double ratingImdb, List<Long> castIds) {
         List<Cast> casts = this.castRepository.findAllById(castIds);
         Genre genre = this.genreRepository.findById(genreId)
                 .orElseThrow(() -> new GenreNotFoundException(genreId));
@@ -74,7 +74,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     @Transactional
-    public Optional<Movie> edit(Long id, String name, LocalDateTime date, String description, Long genreId, Double price, Double quantity, Duration duration, Double ratingImdb, List<Long> castIds) {
+    public Optional<Movie> edit(Long id, String name, LocalDateTime date, String description, Long genreId, String price, Double quantity, String duration, Double ratingImdb, List<Long> castIds) {
         Movie movie = this.movieRepository.findById(id)
                 .orElseThrow(() -> new MovieNotFoundException(id));
 

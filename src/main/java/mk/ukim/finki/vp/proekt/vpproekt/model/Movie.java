@@ -20,17 +20,18 @@ public class Movie {
 
     private LocalDateTime date;
 
+    @Column(length = 4000)
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    private Double price;
+    private String price;
 
     private Double quantity;
 
-    private Duration duration;
+    private String duration;
 
     private Double ratingImdb;
 
@@ -40,7 +41,7 @@ public class Movie {
     public Movie() { }
 
 
-    public Movie(String name, LocalDateTime date, String description, Genre genre, Double price, Double quantity, Duration duration, Double ratingImdb, List<Cast> cast) {
+    public Movie(String name, LocalDateTime date, String description, Genre genre, String price, Double quantity, String duration, Double ratingImdb, List<Cast> cast) {
         this.name = name;
         this.date = date;
         this.description = description;

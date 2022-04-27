@@ -5,6 +5,7 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.enumerations.Role;
 import mk.ukim.finki.vp.proekt.vpproekt.model.projections.UserProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query("select u.username, u.name, u.surname from User u")
     List<UserProjection> takeUsernameAndNameAndSurnameByProjection();
+
+    @Query("SELECT u FROM User u WHERE u.username = :username")
+    public User getUserByUsername(@Param("username") String username);
 }

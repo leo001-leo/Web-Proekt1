@@ -13,7 +13,7 @@ public class MovieDto {
 
     private String name;
 
-    private Double price;
+    private String price;
 
     private String description;
 
@@ -21,7 +21,7 @@ public class MovieDto {
 
     private Double quantity;
 
-    private Duration duration;
+    private String duration;
 
     private Double ratingImdb;
 
@@ -32,7 +32,7 @@ public class MovieDto {
     public MovieDto() {
     }
 
-    public MovieDto(Double price, String description, LocalDateTime date, Double quantity, Duration duration, Double ratingImdb, Long genre, List<Long> cast) {
+    public MovieDto(String price, String description, LocalDateTime date, Double quantity, String duration, Double ratingImdb, Long genre, List<Long> cast) {
         this.price = price;
         this.description = description;
         this.date = date;

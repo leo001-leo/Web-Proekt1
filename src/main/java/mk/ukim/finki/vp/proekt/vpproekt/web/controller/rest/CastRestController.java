@@ -11,11 +11,11 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/cast")
-public class CastController {
+public class CastRestController {
 
     private final CastService castService;
 
-    public CastController(CastService castService) {
+    public CastRestController(CastService castService) {
         this.castService = castService;
     }
 

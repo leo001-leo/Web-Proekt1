@@ -10,11 +10,11 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/genres")
-public class GenreController {
+public class GenreRestController {
 
     private final GenreService genreService;
 
-    public GenreController(GenreService genreService) {
+    public GenreRestController(GenreService genreService) {
         this.genreService = genreService;
     }
 

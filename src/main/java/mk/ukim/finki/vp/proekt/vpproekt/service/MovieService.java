@@ -21,9 +21,9 @@ public interface MovieService {
                          LocalDateTime date,
                          String description,
                          Long genreId,
-                         Double price,
+                         String price,
                          Double quantity,
-                         Duration duration,
+                         String duration,
                          Double ratingImdb,
                          List<Long> castIds);
 
@@ -34,9 +34,9 @@ public interface MovieService {
                          LocalDateTime date,
                          String description,
                          Long genreId,
-                         Double price,
+                         String price,
                          Double quantity,
-                         Duration duration,
+                         String duration,
                          Double ratingImdb,
                          List<Long> castIds);
 
