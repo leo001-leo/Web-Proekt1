@@ -3,17 +3,18 @@ package mk.ukim.finki.vp.proekt.vpproekt.model;
 import lombok.Data;
 import mk.ukim.finki.vp.proekt.vpproekt.model.enumerations.Provider;
 import mk.ukim.finki.vp.proekt.vpproekt.model.enumerations.Role;
-import org.hibernate.mapping.Collection;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "shop_users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     private String username;
@@ -59,20 +60,29 @@ public class User {
         this.role = role;
     }
 
+    @Override
     public boolean isAccountNonExpired() {
         return isAccountNonExpired;
     }
 
+    @Override
     public boolean isAccountNonLocked() {
         return isAccountNonLocked;
     }
 
+    @Override
     public boolean isCredentialsNonExpired() {
         return isCredentialsNonExpired;
     }
 
+    @Override
     public boolean isEnabled() {
         return isEnabled;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(role);
     }
 
 }

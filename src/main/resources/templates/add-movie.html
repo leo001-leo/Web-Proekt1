@@ -109,6 +109,12 @@
           </div>
 
           <!--Movie cast - ne znam kako da se impleentira lista-->
+          <div class="form-group">
+            <label>Movie Cast</label>
+            <select id="cast" name="cast" multiple="multiple">
+              <option th:each="cas: ${cast}" th:value="${cas.getId()}" th:text="${cas.getName()}">[cas.name]</option>
+            </select>
+          </div>
 
           <button id="submit" type="submit" class="btn btn-primary">Submit</button>
           <a type="button" class="btn btn-primary" href="/movies">Back</a>

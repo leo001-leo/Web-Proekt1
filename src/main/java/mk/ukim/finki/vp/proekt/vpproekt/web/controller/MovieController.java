@@ -63,7 +63,7 @@ public class MovieController {
 
     @GetMapping("/add-form")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String addProductPage(Model model){
+    public String addMoviePage(Model model){
         List<Cast> cast = this.castService.findAll();
         List<Genre> genres = this.genreService.listGenres();
         model.addAttribute("cast", cast);
