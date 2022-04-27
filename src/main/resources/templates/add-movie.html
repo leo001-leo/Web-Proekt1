@@ -51,7 +51,7 @@
             <select name="genre" class="form-control">
               <option th:if="${movie} != null"
                       th:selected="${movie.getGenre() != null &&
-                                product.getGenre().getId() == gen.getId()}"
+                                movie.getGenre().getId() == gen.getId()}"
                       th:each="gen : ${genres}"
                       th:value="${gen.getId()}"
                       th:text="${gen.getName()}">
