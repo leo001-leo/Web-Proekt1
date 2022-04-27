@@ -35,11 +35,10 @@ public class Movie {
 
     private Double ratingImdb;
 
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Cast> cast;
 
     public Movie() { }
-
 
     public Movie(String name, LocalDateTime date, String description, Genre genre, String price, Double quantity, String duration, Double ratingImdb, List<Cast> cast) {
         this.name = name;

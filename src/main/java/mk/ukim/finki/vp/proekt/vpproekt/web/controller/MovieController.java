@@ -59,7 +59,7 @@ public class MovieController {
             model.addAttribute("bodyContent", "add-movie");
             return "master-template";
         }
-        return "redirect:/movies?error=ProductNotFound";
+        return "redirect:/movies?error=MovieNotFound";
     }
 
     @GetMapping("/add-form")
