@@ -30,6 +30,7 @@ public class GenreController {
         model.addAttribute("bodyContent", "genres");
         return "master-template";
     }
+
 }
 
 

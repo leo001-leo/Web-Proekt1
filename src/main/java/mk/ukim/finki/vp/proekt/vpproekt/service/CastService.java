@@ -14,11 +14,11 @@ public interface CastService {
 
     Optional<Cast> findByName(String name);
 
-    Optional<Cast> save(String name, String surname, Long movie);
+    Optional<Cast> save(String name, String surname);
 
     Optional<Cast> save(CastDto castDto);
 
-    Optional<Cast> edit(Long id, String name, String surname, Long movie);
+    Optional<Cast> edit(Long id, String name, String surname);
 
     Optional<Cast> edit(Long id, CastDto castDto);
 

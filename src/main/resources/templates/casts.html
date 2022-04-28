@@ -30,4 +30,38 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row row justify-content-center align-items-center">
+            <div class="col-md-5">
+                <form action="/casts/add" method="POST">
+                    <input id="id" type="hidden" name="id" th:value="(${cast} != null ? ${cast.getId()} : '')">
+                    <h3 class="jumbotron-heading justify-content-center align-items-center" style="font-family: 'Harlow Solid Italic'">Add new actor</h3>
+                    <!--Cast name-->
+                    <div class="form-group">
+                        <label for="name">Actor's Name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               th:value="(${movie} != null ? ${movie.getName()} : '')"
+                               required
+                               placeholder="Enter the actor's name">
+                    </div>
+                    <!--Cast surname-->
+                    <div class="form-group">
+                        <label for="surname">Actor's Surname</label>
+                        <input type="text"
+                               class="form-control"
+                               id="surname"
+                               name="surname"
+                               th:value="(${cast} != null ? ${cast.getSurname()} : '')"
+                               required
+                               placeholder="Enter the actor's surname">
+                        <button id="submit" type="submit" class="btn btn-success">Add</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

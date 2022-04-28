@@ -41,9 +41,7 @@ public class CastServiceImpl implements CastService {
     }
 
     @Override
-    public Optional<Cast> save(String name, String surname, Long movieId) {
-        Movie movie = this.movieRepository.findById(movieId)
-                .orElseThrow(() -> new MovieNotFoundException(movieId));
+    public Optional<Cast> save(String name, String surname) {
         this.castRepository.deleteByName(name);
         Cast cast = new Cast(name, surname);
         this.castRepository.save(cast);
@@ -52,8 +50,6 @@ public class CastServiceImpl implements CastService {
 
     @Override
     public Optional<Cast> save(CastDto castDto) {
-        Movie movie = this.movieRepository.findById(castDto.getMovie())
-                .orElseThrow(() -> new MovieNotFoundException(castDto.getMovie()));
         this.castRepository.deleteByName(castDto.getName());
         Cast cast = new Cast(castDto.getName(), castDto.getSurname());
         this.castRepository.save(cast);
@@ -62,15 +58,12 @@ public class CastServiceImpl implements CastService {
 
     @Override
     @Transactional
-    public Optional<Cast> edit(Long id, String name, String surname, Long movieId) {
+    public Optional<Cast> edit(Long id, String name, String surname) {
         Cast cast = this.castRepository.findById(id)
                 .orElseThrow(() -> new CastNotFoundException(id));
 
         cast.setName(name);
         cast.setSurname(surname);
-
-        Movie movie = this.movieRepository.findById(movieId)
-                .orElseThrow(() -> new MovieNotFoundException(movieId));
         this.castRepository.save(cast);
         return Optional.of(cast);
     }
@@ -82,9 +75,6 @@ public class CastServiceImpl implements CastService {
 
         cast.setName(castDto.getName());
         cast.setSurname(cast.getSurname());
-
-        Movie movie = this.movieRepository.findById(castDto.getMovie())
-                .orElseThrow(() -> new MovieNotFoundException(castDto.getMovie()));
         this.castRepository.save(cast);
         return Optional.of(cast);
     }
