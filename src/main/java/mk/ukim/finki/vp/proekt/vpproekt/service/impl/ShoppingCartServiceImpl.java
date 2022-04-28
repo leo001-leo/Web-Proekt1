@@ -31,7 +31,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public List<Movie> listAllProductsInShoppingCart(Long cartId) {
+    public List<Movie> listAllMoviesInShoppingCart(Long cartId) {
         if(!this.shoppingCartRepository.findById(cartId).isPresent())
             throw new ShoppingCartNotFoundException(cartId);
         return this.shoppingCartRepository.findById(cartId).get().getMovies();
@@ -50,7 +50,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCart addProductToShoppingCart(String username, Long movieId) {
+    public ShoppingCart addMovieToShoppingCart(String username, Long movieId) {
         ShoppingCart shoppingCart=this.getActiveShoppingCart(username);
         Movie movie = this.movieService.findById(movieId)
                 .orElseThrow(()->new MovieNotFoundException(movieId));
