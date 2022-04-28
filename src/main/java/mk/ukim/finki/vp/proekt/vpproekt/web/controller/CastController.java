@@ -1,6 +1,8 @@
 package mk.ukim.finki.vp.proekt.vpproekt.web.controller;
 
+import mk.ukim.finki.vp.proekt.vpproekt.model.Cast;
 import mk.ukim.finki.vp.proekt.vpproekt.model.Genre;
+import mk.ukim.finki.vp.proekt.vpproekt.service.CastService;
 import mk.ukim.finki.vp.proekt.vpproekt.service.GenreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,27 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+
 @Controller
-@RequestMapping("/genres")
-public class GenreController {
+@RequestMapping("/casts")
+public class CastController {
 
-    private final GenreService genreService;
+    private final CastService castService;
 
-    public GenreController(GenreService genreService) {
-        this.genreService = genreService;
+    public CastController(CastService castService) {
+        this.castService = castService;
     }
 
     @GetMapping
-    public String getGenre(@RequestParam(required = false) String error, Model model) {
+    public String getCast(@RequestParam(required = false) String error, Model model) {
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
         }
-        List<Genre> genres = this.genreService.listGenres();
-        model.addAttribute("genres", genres);
-        model.addAttribute("bodyContent", "genres");
+        List<Cast> casts = this.castService.findAll();
+        model.addAttribute("casts", casts);
+        model.addAttribute("bodyContent", "casts");
         return "master-template";
     }
 }
-
-

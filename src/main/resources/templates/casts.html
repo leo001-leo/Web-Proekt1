@@ -1,0 +1,37 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <section class="jumbotron text-center" style="background-color: antiquewhite">
+        <div class="container" >
+            <h1 class="jumbotron-heading" style="font-weight: bold">I LOVE MOVIES</h1>
+            <h3 class="jumbotron-heading" style="font-family: 'Harlow Solid Italic'">List of all available movies</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
+                <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z"/>
+            </svg>
+        </div>
+    </section>
+
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12" th:if="${casts.size() > -1}">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr class="table-warning">
+                            <th scope="col">Cast Name</th>
+                            <th scope="col">Cast Surname</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="cast : ${casts}" class="product">
+                            <td th:text="${cast.getName() != null}
+                            ? ${cast.getName()} : 'No Cast'"></td>
+                            <td th:text="${cast.getSurname() != null}
+                            ? ${cast.getSurname()} : 'No Cast'"></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
