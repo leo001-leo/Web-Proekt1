@@ -24,7 +24,7 @@ public class ShoppingCart {
     @ManyToOne
     private User user;
 
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Movie> movies;
 
     public ShoppingCart() {

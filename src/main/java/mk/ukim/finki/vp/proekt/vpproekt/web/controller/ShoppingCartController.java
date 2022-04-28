@@ -46,8 +46,15 @@ public class ShoppingCartController {
         }
     }
 
-    @PostMapping("/reserve")
-    public String reserveTicket(@RequestParam Long id){
+    @GetMapping("/reserve/{id}")
+    public String getBuyTicketPage(@PathVariable Long id, Model model){
+
+        //treba da se implementira
+        return "buy-ticket";
+    }
+
+    @PostMapping("/reserve/{id}")
+    public String reserveTicket(@PathVariable Long id){
         this.shoppingCartService.reserveTicket(id);
         return "redirect:/movies";
     }

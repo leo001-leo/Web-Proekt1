@@ -37,7 +37,8 @@
                         </thead>
                         <tbody>
                         <tr th:each="movie : ${movies}" class="cart-item">
-                            <td th:name="id" id="Id" th:value="${movie.getId()}"></td>  //ova e staveno samo za da se dobie idto na movie
+                            <!--ova e staveno samo za da se dobie idto na movie-->
+                            <td th:name="id" id="Id" th:value="${movie.getId()}"></td>
                             <td th:text="${movie.getName()}"></td>
                             <td th:text="${movie.getDate()}"></td>
                             <td th:text="${movie.getDescription()}"></td>
@@ -45,35 +46,15 @@
                             <td th:text="${movie.getPrice()}"></td>
                             <td th:text="${movie.getDuration()}"></td>
                             <td th:text="${movie.getRatingImdb()}"></td>
+                            <td  sec:authorize="isAuthenticated()" class="text-right">
+                                <a  class="btn btn-sm btn-outline-success cart-product" th:href="@{'/shopping-cart/reserve/{id}' (id=${movie.getId()})}">
+                                        <i class="fa fa-trash">BUY NOW!</i>
+                                </a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
-                    <h2>Shipping details for your order!</h2>
-                    <div class="form-group">
-                    <input type="text"
-                           class="form-control"
-                           required
-                           placeholder="Enter name">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text"
-                               class="form-control"
-                               required
-                               placeholder="Enter surname">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text"
-                               class="form-control"
-                               required
-                               placeholder="Enter address">
-                    </div>
-
-                    <button id="submit" type="submit" class="btn btn-primary">BUY NOW</button>
-                    <!-- Ne raboti BUY NOW kopceto... nez zas ne odi vo kontrolerot -->
                 </form>
             </div>
         </div>

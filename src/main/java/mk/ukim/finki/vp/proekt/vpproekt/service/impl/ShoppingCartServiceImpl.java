@@ -15,6 +15,7 @@ import mk.ukim.finki.vp.proekt.vpproekt.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,14 +60,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .collect(Collectors.toList()).size() > 0)
             throw new MovieAlreadyInShoppingCartException(movieId,username);
         shoppingCart.getMovies().add(movie);
+
+        Optional<Movie> movie2 = shoppingCart.getMovies().stream().filter(r -> r.getId() == movieId).findFirst();
+        shoppingCart.getMovies().remove(movie2);
+
         return this.shoppingCartRepository.save(shoppingCart);
     }
 
     @Override
     public void reserveTicket(Long id) {
         Movie movie = this.movieService.findById(id).get();
-        Double quant=movie.getQuantity();
+        Double quant = movie.getQuantity();
         quant--;
-        movie.setQuantity(quant);
+        //movie.setQuantity(movie.getQuantity() - guantitiy);
+        //treba da se implementira
     }
 }
