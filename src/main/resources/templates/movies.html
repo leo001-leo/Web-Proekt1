@@ -66,20 +66,6 @@
                                             class="btn btn-sm btn-outline-success cart-product">
                                         <i class="fa fa-trash">RESERVE!</i>
                                     </button>
-<!--                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/jquery.barrating.min.js"></script>-->
-<!--                                    <div class="padding">-->
-<!--                                        <div class="col-md-6">-->
-<!--                                            <div class="box box-blue box-example-movie">-->
-<!--                                                <div class="box-header">Movie Rating</div>-->
-<!--                                                <div class="box-body"> <select id="example-movie" name="rating" autocomplete="off">-->
-<!--                                                    <option value="Bad">Bad</option>-->
-<!--                                                    <option value="Mediocre">Mediocre</option>-->
-<!--                                                    <option value="Good" selected="selected">Good</option>-->
-<!--                                                    <option value="Awesome">Awesome</option>-->
-<!--                                                </select> </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
                                 </form>
                             </td>
                         </tr>
@@ -91,7 +77,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
                         <th:block  sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a href="/movies/add-form" class="btn btn-block btn-outline-success add-product-btn">
+                        <a href="/movies/add-form"  class="btn btn-block btn-success add-product-btn">
                             Add new Movie</a>
                         </th:block>
                     </div>

@@ -39,9 +39,11 @@
         </div>
 
         <div class="form-group">
-            <label for="quantity">Movie quantity</label>
-            <input type="text"
+            <label for="quantity">Quantity of tickets</label>
+            <input type="number"
                    class="form-control"
+                   min="0"
+                   max="100"
                    id="quantity"
                    name="quantity"
                    required
