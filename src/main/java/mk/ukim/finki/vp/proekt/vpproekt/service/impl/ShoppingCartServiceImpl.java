@@ -61,4 +61,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCart.getMovies().add(movie);
         return this.shoppingCartRepository.save(shoppingCart);
     }
+
+    @Override
+    public void reserveTicket(Long id) {
+        Movie movie = this.movieService.findById(id).get();
+        Double quant=movie.getQuantity();
+        quant--;
+        movie.setQuantity(quant);
+    }
 }

@@ -9,4 +9,5 @@ public interface ShoppingCartService {
     List<Movie> listAllMoviesInShoppingCart(Long cartId);
     ShoppingCart getActiveShoppingCart(String username);
     ShoppingCart addMovieToShoppingCart(String username, Long movieId);
+    void reserveTicket(Long id);
 }

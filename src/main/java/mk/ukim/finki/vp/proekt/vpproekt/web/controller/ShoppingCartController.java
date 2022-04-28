@@ -46,6 +46,9 @@ public class ShoppingCartController {
         }
     }
 
-//    @PostMapping
-//    public String reserveTicket(@RequestParam )
+    @PostMapping("/reserve")
+    public String reserveTicket(@RequestParam Long id){
+        this.shoppingCartService.reserveTicket(id);
+        return "redirect:/movies";
+    }
 }
