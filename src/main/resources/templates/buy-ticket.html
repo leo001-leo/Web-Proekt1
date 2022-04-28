@@ -6,7 +6,8 @@
     <form class="form-signin mt-xl-5" method="post" th:action="@{'/shopping-cart/reserve/{id}' (id=${movie.getId()})}">
 
         <h2>Shipping details for your order!</h2>
-        <label th:text="${movie.getName()}"></label>
+        <label class="h3">Buy ticket for </label>
+        <label class="h3" style="color: crimson" th:text="${movie.getName()}"></label>
         <div class="form-group">
             <label for="name">Customer Name</label>
             <input type="text"
@@ -46,11 +47,7 @@
                    required
                    placeholder="Enter movie tickets quantity">
         </div>
-
-<!--        <input type="text" id="usernameId" />-->
-
-        <button id="submit" type="submit" class="btn btn-primary">BUY NOW</button>
-        <!-- Ne raboti BUY NOW kopceto... nez zas ne odi vo kontrolerot -->
+        <button id="submit" type="submit" class="btn btn-success">BUY NOW</button>
     </form>
 </div>
 </div>

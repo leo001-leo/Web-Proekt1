@@ -54,8 +54,8 @@ public class ShoppingCartController {
     public String getBuyTicketPage(@PathVariable Long id, Model model){
         Movie movie=this.movieService.findById(id).get();
         model.addAttribute("movie",movie);
-        //treba da se implementira
-        return "buy-ticket";
+        model.addAttribute("bodyContent", "buy-ticket");
+        return "master-template";
     }
 
     @PostMapping("/reserve/{id}")
