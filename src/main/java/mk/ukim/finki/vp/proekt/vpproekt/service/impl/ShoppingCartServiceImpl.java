@@ -8,6 +8,7 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.MovieAlreadyInShoppingC
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.MovieNotFoundException;
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.ShoppingCartNotFoundException;
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.UserNotFoundException;
+import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.MovieRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.ShoppingCartRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.UserRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.service.MovieService;
@@ -24,11 +25,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartRepository shoppingCartRepository;
     private final UserRepository userRepository;
     private final MovieService movieService;
+    private final MovieRepository movieRepository;
 
-    public ShoppingCartServiceImpl(ShoppingCartRepository shoppingCartRepository, UserRepository userRepository, MovieService movieService) {
+    public ShoppingCartServiceImpl(ShoppingCartRepository shoppingCartRepository, UserRepository userRepository, MovieService movieService, MovieRepository movieRepository) {
         this.shoppingCartRepository = shoppingCartRepository;
         this.userRepository = userRepository;
         this.movieService = movieService;
+        this.movieRepository = movieRepository;
     }
 
     @Override
@@ -68,10 +71,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void reserveTicket(Long id) {
+    public void reserveTicket(Long id, String quantity) {
         Movie movie = this.movieService.findById(id).get();
-        Double quant = movie.getQuantity();
-        quant--;
+        String name=movie.getName(); //samo za proverka, dali go cita imeto dobro
+        Double requestedQuantity=Double.parseDouble(quantity);
+        Double quantityOfMovie = movie.getQuantity();
+        Double result=quantityOfMovie-requestedQuantity;
+        movie.setQuantity(result);
+        this.movieRepository.save(movie);
         //movie.setQuantity(movie.getQuantity() - guantitiy);
         //treba da se implementira
     }

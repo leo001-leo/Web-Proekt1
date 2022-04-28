@@ -1,7 +1,9 @@
 package mk.ukim.finki.vp.proekt.vpproekt.web.controller;
 
+import mk.ukim.finki.vp.proekt.vpproekt.model.Movie;
 import mk.ukim.finki.vp.proekt.vpproekt.model.ShoppingCart;
 import mk.ukim.finki.vp.proekt.vpproekt.model.User;
+import mk.ukim.finki.vp.proekt.vpproekt.service.MovieService;
 import mk.ukim.finki.vp.proekt.vpproekt.service.ShoppingCartService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -15,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 public class ShoppingCartController {
 
     private final ShoppingCartService shoppingCartService;
+    private final MovieService movieService;
 
-    public ShoppingCartController(ShoppingCartService shoppingCartService) {
+    public ShoppingCartController(ShoppingCartService shoppingCartService, MovieService movieService) {
         this.shoppingCartService = shoppingCartService;
+        this.movieService = movieService;
     }
 
     @GetMapping
@@ -48,14 +52,19 @@ public class ShoppingCartController {
 
     @GetMapping("/reserve/{id}")
     public String getBuyTicketPage(@PathVariable Long id, Model model){
-
+        Movie movie=this.movieService.findById(id).get();
+        model.addAttribute("movie",movie);
         //treba da se implementira
         return "buy-ticket";
     }
 
     @PostMapping("/reserve/{id}")
-    public String reserveTicket(@PathVariable Long id){
-        this.shoppingCartService.reserveTicket(id);
+    public String reserveTicket(@PathVariable Long id,
+                                @RequestParam String name,
+                                @RequestParam String surname,
+                                @RequestParam String address,
+                                @RequestParam String quantity){
+        this.shoppingCartService.reserveTicket(id, quantity);
         return "redirect:/movies";
     }
 }

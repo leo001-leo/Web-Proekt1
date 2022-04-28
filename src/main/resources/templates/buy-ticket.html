@@ -1,0 +1,56 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div class="container">
+    <h1 th:if="${hasError}" th:text="${error}"></h1>
+</div>
+<div class="container">
+    <form class="form-signin mt-xl-5" method="post" th:action="@{'/shopping-cart/reserve/{id}' (id=${movie.getId()})}">
+
+        <h2>Shipping details for your order!</h2>
+        <label th:text="${movie.getName()}"></label>
+        <div class="form-group">
+            <label for="name">Customer Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   name="name"
+                   required
+                   placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Customer Surname</label>
+            <input type="text"
+                   class="form-control"
+                   id="surname"
+                   name="surname"
+                   required
+                   placeholder="Enter your surname">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Customer address</label>
+            <input type="text"
+                   class="form-control"
+                   id="address"
+                   name="address"
+                   required
+                   placeholder="Enter your address">
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Movie quantity</label>
+            <input type="text"
+                   class="form-control"
+                   id="quantity"
+                   name="quantity"
+                   required
+                   placeholder="Enter movie tickets quantity">
+        </div>
+
+<!--        <input type="text" id="usernameId" />-->
+
+        <button id="submit" type="submit" class="btn btn-primary">BUY NOW</button>
+        <!-- Ne raboti BUY NOW kopceto... nez zas ne odi vo kontrolerot -->
+    </form>
+</div>
+</div>
