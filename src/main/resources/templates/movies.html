@@ -40,7 +40,7 @@
                             <td th:text="${movie.getRatingImdb()}"></td>
                             <td>
                                 <ul>
-                                    <li th:each="cas: ${movie.cast}" th:text="${cas.name}">[cas.name]</li>
+                                    <li th:each="cas: ${movie.cast}" th:text="${cas.name + ' ' + cas.surname}">[cas.name],[cas.surname]</li>
                                 </ul>
                             </td>
                             <td class="text-right">
