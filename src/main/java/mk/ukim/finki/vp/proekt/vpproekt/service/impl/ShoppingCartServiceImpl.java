@@ -61,8 +61,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             throw new MovieAlreadyInShoppingCartException(movieId,username);
         shoppingCart.getMovies().add(movie);
 
-        Optional<Movie> movie2 = shoppingCart.getMovies().stream().filter(r -> r.getId() == movieId).findFirst();
-        shoppingCart.getMovies().remove(movie2);
+//        Optional<Movie> movie2 = shoppingCart.getMovies().stream().filter(r -> r.getId() == movieId).findFirst();
+//        shoppingCart.getMovies().remove(movie2);
 
         return this.shoppingCartRepository.save(shoppingCart);
     }
