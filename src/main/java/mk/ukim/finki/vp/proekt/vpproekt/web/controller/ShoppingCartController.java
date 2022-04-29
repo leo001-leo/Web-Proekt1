@@ -65,6 +65,6 @@ public class ShoppingCartController {
                                 @RequestParam String address,
                                 @RequestParam String quantity){
         this.shoppingCartService.reserveTicket(id, quantity);
-        return "redirect:/movies";
+        return "redirect:/movies/success";
     }
 }
