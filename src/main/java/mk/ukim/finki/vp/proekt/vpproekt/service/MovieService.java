@@ -44,5 +44,7 @@ public interface MovieService {
 
     void deleteById(Long id);
 
+    List<Movie> getByKeyword(String keyword);
+
 
 }

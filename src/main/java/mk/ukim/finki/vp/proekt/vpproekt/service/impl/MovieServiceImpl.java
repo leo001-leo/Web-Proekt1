@@ -120,4 +120,9 @@ public class MovieServiceImpl implements MovieService {
     public void deleteById(Long id) {
         this.movieRepository.deleteById(id);
     }
+
+    @Override
+    public List<Movie> getByKeyword(String keyword) {
+        return movieRepository.findByKeyword(keyword);
+    }
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/movies")
@@ -95,5 +96,19 @@ public class MovieController {
     @GetMapping("/success")
     public String getSuccessfulPage(){
         return "successfullyBoughtTicket";
+    }
+
+    @GetMapping("/search")
+    public String getByKeyword(Movie movie, Model model, String keyword) {
+        if (keyword != null) {
+            List<Movie> movies = movieService.getByKeyword(keyword);
+            model.addAttribute("movies", movies);
+            model.addAttribute("bodyContent", "searchMovie");
+        } else {
+            List<Movie> movies = movieService.findAll();
+            model.addAttribute("bodyContent", "movies");
+            this.movieService.findAll();
+        }
+        return "master-template";
     }
 }
