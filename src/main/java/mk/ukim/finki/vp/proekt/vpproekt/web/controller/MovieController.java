@@ -91,4 +91,9 @@ public class MovieController {
         }
         return "redirect:/movies";
     }
+
+    @GetMapping("/success")
+    public String getSuccessfulPage(){
+        return "successfullyBoughtTicket";
+    }
 }
