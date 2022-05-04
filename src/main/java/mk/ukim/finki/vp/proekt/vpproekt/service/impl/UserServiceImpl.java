@@ -8,14 +8,12 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.PasswordsDoNotMatchExce
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.UsernameAlreadyExistsException;
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.UserRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.service.UserService;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Service
 public class UserServiceImpl implements UserService {

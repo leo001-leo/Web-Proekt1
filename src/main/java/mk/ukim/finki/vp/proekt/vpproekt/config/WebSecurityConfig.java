@@ -2,17 +2,24 @@ package mk.ukim.finki.vp.proekt.vpproekt.config;
 
 //import mk.ukim.finki.vp.proekt.vpproekt.security.FacebookConnectionSignup;
 //import mk.ukim.finki.vp.proekt.vpproekt.security.FacebookSignInAdapter;
+import mk.ukim.finki.vp.proekt.vpproekt.model.CustomOAuth2User;
+import mk.ukim.finki.vp.proekt.vpproekt.model.CustomOAuth2UserService;
+import mk.ukim.finki.vp.proekt.vpproekt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 //import org.springframework.social.connect.ConnectionFactoryLocator;
 //import org.springframework.social.connect.UsersConnectionRepository;
 //import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
@@ -28,11 +35,13 @@ WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final CustomUsernamePasswordAuthenticationProvider authenticationProvider;
+    private final UserService userService;
 
     public WebSecurityConfig(PasswordEncoder passwordEncoder,
-                             CustomUsernamePasswordAuthenticationProvider authenticationProvider) {
+                             CustomUsernamePasswordAuthenticationProvider authenticationProvider, UserService userService) {
         this.passwordEncoder = passwordEncoder;
         this.authenticationProvider = authenticationProvider;
+        this.userService = userService;
     }
 
 
@@ -50,6 +59,12 @@ WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http.oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oauth2UserService);
+
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/assets/**", "/register", "/movies", "/api/**","/login*","/signin/**","/signup/**").permitAll()
@@ -69,8 +84,30 @@ WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login")
                 .and()
-                .exceptionHandling().accessDeniedPage("/access-denied");
+                .exceptionHandling().accessDeniedPage("/access-denied")
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oauth2UserService)
+                .and()
+                .successHandler(new AuthenticationSuccessHandler() {
+
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                        Authentication authentication) throws IOException, ServletException {
+
+                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+
+                        userService.processOAuthPostLogin(oauthUser.getEmail());
+
+                        response.sendRedirect("/movies");
+                    }
+                });
+
     }
+    @Autowired
+    private CustomOAuth2UserService oauth2UserService;
 
 //    @Bean
 //    public ProviderSignInController providerSignInController() {
