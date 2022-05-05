@@ -1,4 +1,4 @@
-# Web-Proekt
+# Reserve your movie ticket!
 
 Семинарска работа по предметот Веб програмирање со наслов "I LOVE MOVIES"
 
