@@ -60,16 +60,6 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(String username, Provider provider){
-        this.username = username;
-        this.provider = provider;
-        this.name = "";
-        this.surname = "";
-        this.password = "";
-        this.email = "";
-        this.role = Role.ROLE_USER;
-    }
-
     @Override
     public boolean isAccountNonExpired() {
         return isAccountNonExpired;

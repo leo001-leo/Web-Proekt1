@@ -99,7 +99,7 @@ WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                         CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
 
-                        userService.processOAuthPostLogin(oauthUser.getEmail());
+                        userService.processOAuthPostLogin(oauthUser.getName());
 
                         response.sendRedirect("/movies");
                     }
@@ -109,33 +109,6 @@ WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomOAuth2UserService oauth2UserService;
 
-//    @Bean
-//    public ProviderSignInController providerSignInController() {
-//        ConnectionFactoryLocator connectionFactoryLocator =
-//                connectionFactoryLocator();
-//        UsersConnectionRepository usersConnectionRepository =
-//                getUsersConnectionRepository(connectionFactoryLocator);
-//        ((InMemoryUsersConnectionRepository) usersConnectionRepository)
-//                .setConnectionSignUp(facebookConnectionSignup);
-//        return new ProviderSignInController(connectionFactoryLocator,
-//                usersConnectionRepository, new FacebookSignInAdapter());
-//    }
-//
-//    private ConnectionFactoryLocator connectionFactoryLocator() {
-//        ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
-//        registry.addConnectionFactory(new FacebookConnectionFactory(appId, appSecret));
-//        return registry;
-//    }
-//
-//    private UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator
-//                                                                           connectionFactoryLocator) {
-//        return new InMemoryUsersConnectionRepository(connectionFactoryLocator);
-//    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//            auth.userDetailsService(userDetailsService);
-//        }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {

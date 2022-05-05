@@ -57,18 +57,18 @@ public class UserServiceImpl implements UserService {
         }
 
     }
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = this.userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                Stream.of(new SimpleGrantedAuthority("ROLE_"+user.getRole())).collect(Collectors.toList())
-        );
-     }
-
 //    @Override
-//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        return (UserDetails) userRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(s));
-//    }
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = this.userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+//        return new org.springframework.security.core.userdetails.User(
+//                user.getUsername(),
+//                user.getPassword(),
+//                Stream.of(new SimpleGrantedAuthority("ROLE_"+user.getRole())).collect(Collectors.toList())
+//        );
+//     }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return (UserDetails) userRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(s));
+    }
 }
