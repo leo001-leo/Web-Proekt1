@@ -42,12 +42,13 @@ public class ShoppingCartController {
     @PostMapping("/add-movie/{id}")
     public String addProductToShoppingCart(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
         try {
-            User user = (User) authentication.getPrincipal();
-            this.shoppingCartService.addMovieToShoppingCart(user.getUsername(), id);
+            String username = req.getRemoteUser();
+            //User user = (User) authentication.getPrincipal();
+            this.shoppingCartService.addMovieToShoppingCart(username, id);
             return "redirect:/shopping-cart";
         } catch (RuntimeException exception) {
             return "redirect:/shopping-cart?error=" + exception.getMessage();
-        }
+     }
     }
 
     @GetMapping("/reserve/{id}")

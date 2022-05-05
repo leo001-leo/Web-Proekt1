@@ -8,11 +8,14 @@ import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.PasswordsDoNotMatchExce
 import mk.ukim.finki.vp.proekt.vpproekt.model.exceptions.UsernameAlreadyExistsException;
 import mk.ukim.finki.vp.proekt.vpproekt.repository.jpa.UserRepository;
 import mk.ukim.finki.vp.proekt.vpproekt.service.UserService;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -54,18 +57,18 @@ public class UserServiceImpl implements UserService {
         }
 
     }
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = this.userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
-//        return new org.springframework.security.core.userdetails.User(
-//                user.getUsername(),
-//                user.getPassword(),
-//                Stream.of(new SimpleGrantedAuthority("ROLE_"+user.getRole())).collect(Collectors.toList())
-//        );
-    // }
-
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return (UserDetails) userRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(s));
-    }
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = this.userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                Stream.of(new SimpleGrantedAuthority("ROLE_"+user.getRole())).collect(Collectors.toList())
+        );
+     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+//        return (UserDetails) userRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(s));
+//    }
 }
