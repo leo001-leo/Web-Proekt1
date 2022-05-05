@@ -99,7 +99,7 @@ WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                         CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
 
-                        userService.processOAuthPostLogin(oauthUser.getEmail());
+                        userService.processOAuthPostLogin(oauthUser.getName());
 
                         response.sendRedirect("/movies");
                     }
