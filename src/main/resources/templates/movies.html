@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="movie : ${movies}" class="product">
-                            <td th:text="${movie.getName()}"></td>
+                            <td style="font-weight: bold; color: crimson" th:text="${movie.getName()}"></td>
                             <td th:text="${movie.getDate()}"></td>
                             <td th:text="${movie.getDescription()}"></td>
                             <td th:text="${movie.getGenre() != null}

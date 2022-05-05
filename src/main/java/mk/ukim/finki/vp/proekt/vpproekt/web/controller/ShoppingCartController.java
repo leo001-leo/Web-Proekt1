@@ -43,7 +43,6 @@ public class ShoppingCartController {
     public String addProductToShoppingCart(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
         try {
             String username = req.getRemoteUser();
-            //User user = (User) authentication.getPrincipal();
             this.shoppingCartService.addMovieToShoppingCart(username, id);
             return "redirect:/shopping-cart";
         } catch (RuntimeException exception) {
